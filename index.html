@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Times New Roman', Times, serif;
-            background: #c0ddc0;   /* subtle green background for screen */
+            background: #c0ddc0;
             padding: 0;
             margin: 0;
             display: flex;
@@ -28,7 +28,7 @@
             height: 11in;
             background: white;
             border: 2px solid #1f5f2e;
-            padding: 0.2in 0.25in 0.15in 0.25in;  /* top right bottom left */
+            padding: 0.2in 0.25in 0.15in 0.25in;
             box-shadow: 0 12px 28px rgba(0, 60, 0, 0.3);
             margin: 0 auto;
             display: flex;
@@ -37,14 +37,13 @@
             page-break-inside: avoid;
         }
 
-        /* Use flex-grow to fill height */
         .content-grow {
             flex: 1;
             display: flex;
             flex-direction: column;
         }
 
-        /* All measurements in inches for precise print */
+        /* HEADER */
         .header-table {
             width: 100%;
             border-collapse: collapse;
@@ -107,7 +106,7 @@
             font-weight: 600;
         }
 
-        /* INVISIBLE INPUT BORDERS - placeholders shown only on screen */
+        /* INVISIBLE INPUT BORDERS */
         input[type="text"], input[type="number"], textarea {
             width: 100%;
             border: none;
@@ -116,13 +115,14 @@
             padding: 0.03in 0.04in;
             background: transparent;
             font-family: 'Times New Roman', Times, serif;
+            resize: vertical;
         }
         input:focus, textarea:focus {
             background: #f0fff0;
             outline: 1px solid #b8d9b8;
         }
 
-        /* mode of payment row */
+        /* mode of payment */
         .mode-payment {
             display: flex;
             gap: 0.15in;
@@ -203,7 +203,6 @@
             margin-top: 0.02in;
         }
 
-        /* footnote style */
         .position-footnote {
             font-size: 0.1in;
             color: #1f5f2e;
@@ -214,16 +213,13 @@
 
         /* textarea heights */
         .inner-table textarea {
-            min-height: 0.7in;
-            resize: vertical;
+            min-height: 0.6in;
         }
-
         .approval-textarea {
             min-height: 0.6in;
             margin: 0.04in 0 0.04in;
         }
 
-        /* print button */
         .print-btn {
             margin-top: 0.08in;
             padding: 0.08in 0.25in;
@@ -240,7 +236,7 @@
             background: #0f401b;
         }
 
-        /* PRINT MEDIA – REMOVE ALL PLACEHOLDERS & MAXIMIZE */
+        /* PRINT MEDIA */
         @media print {
             body { 
                 background: white; 
@@ -260,16 +256,10 @@
             }
             .print-btn { display: none; }
             
-            /* CRITICAL: remove placeholder text on print */
             input::placeholder, textarea::placeholder {
                 color: transparent !important;
                 opacity: 0 !important;
             }
-            /* for older browsers */
-            input, textarea {
-                text-indent: 0;
-            }
-            
             input, textarea { 
                 border: none; 
                 background: white; 
@@ -287,7 +277,6 @@
             th { 
                 background-color: #e6f3e6 !important; 
             }
-            /* ensure JEV grid prints */
             .jev-grid {
                 -webkit-print-color-adjust: exact; 
                 print-color-adjust: exact;
@@ -298,9 +287,8 @@
 <body>
 
 <div class="form-container">
-    <!-- flex column to use full height -->
     <div class="content-grow">
-        <!-- HEADER - maximized -->
+        <!-- HEADER -->
         <table class="header-table">
             <tr>
                 <td colspan="2" style="text-align: center;">
@@ -400,16 +388,16 @@
                         <th style="width: 20%;">Credit</th>
                     </tr>
                     <tr>
-                        <td><textarea type="text" placeholder="e.g. Repairs & Maintenance"></textarea></td>
-                        <td><textarea type="text" placeholder="____-__-___"></textarea></td>
-                        <td><textarea type="text" placeholder="0.00"></textarea></td>
-                        <td><textarea type="text"></textarea></td>
+                        <td><textarea placeholder="e.g. Repairs & Maintenance"></textarea></td>
+                        <td><textarea placeholder="____-__-___"></textarea></td>
+                        <td><textarea placeholder="0.00"></textarea></td>
+                        <td><textarea placeholder=""></textarea></td>
                     </tr>
                 </table>
             </div>
         </div>
 
-        <!-- SECTIONS C and D with textarea in D -->
+        <!-- SECTIONS C and D -->
         <div class="cd-wrapper">
             <!-- C -->
             <div class="cd-box">
@@ -439,7 +427,6 @@
                 <div class="section-label">D.</div>
                 <div class="section-content" style="padding: 0.05in 0.07in;">
                     <div style="font-weight: bold; font-size: 0.14in;">Approved for Payment</div>
-                    <!-- Blank textarea (no placeholder in print) -->
                     <textarea class="approval-textarea" placeholder="Additional instructions / remarks (optional)"></textarea>
                     <table style="width:100%; border-collapse: collapse; margin-top: 0.03in;">
                         <tr><td style="width: 0.75in; font-size:0.12in;">Signature</td><td><input type="text" placeholder=""></td></tr>
@@ -456,41 +443,56 @@
             </div>
         </div>
 
-        <!-- SECTION E -->
+ <!-- SECTION E – RECEIPT OF PAYMENT (EXACT LAYOUT AS IMAGE) -->
         <div class="section-row" style="border-bottom: 1px solid #1f5f2e;">
             <div class="section-label">E.</div>
             <div class="section-content" style="padding: 0.05in 0.08in;">
                 <table style="width:100%; border-collapse: collapse;">
+                    <!-- Header row with JEV No. -->
                     <tr>
-                        <td colspan="3" style="font-weight: bold; font-size: 0.14in; color: #1f5f2e;">Receipt of Payment</td>
-                        <td style="width: 25%; font-weight: bold; font-size:0.13in; text-align: right;">JEV No.</td>
+                        <td colspan="4" style="font-weight: bold; font-size: 0.14in; color: #1f5f2e; padding-bottom: 0.03in;">Receipt of Payment</td>
+                    </tr>
+                    
+                    <!-- First row: Check/ADA No. and Date (aligned left) -->
+                    <tr>
+                        <td style="width: 33%; font-size: 0.12in; white-space: nowrap;">Check/ADA No.: <input type="text" placeholder="e.g. MDS-____" style="width: 65%; margin-left: 0.02in;"></td>
+                        <td style="width: 33%; font-size: 0.12in; white-space: nowrap;">Date: <input type="text" placeholder="MM/DD/YYYY" style="width: 65%; margin-left: 0.02in;"></td>
+                        <td style="width: 34%; font-size: 0.12in;" colspan="2">Bank Name & Account Number: <input type="text" placeholder="Bank name & Account number" style="width: 60%; margin-left: 0.02in;"></td>
+                    </tr>
+                    
+                    <!-- Second row: Signature and Date (under Check/ADA) and Printed Name with Date under Bank field -->
+                    <tr>
+                        <td style="font-size: 0.12in; white-space: nowrap;">Signature: <input type="text" placeholder="" style="width: 65%; margin-left: 0.02in;"></td>
+                        <td style="font-size: 0.12in; white-space: nowrap;">Date: <input type="text" placeholder="" style="width: 65%; margin-left: 0.02in;"></td>
+                        <td style="font-size: 0.12in; white-space: nowrap;" colspan="2">Printed Name: <input type="text" placeholder="" style="width: 65%; margin-left: 0.02in;"></td>
+                    </tr>
+                    
+                    <!-- Spacer row for visual separation (minimal) -->
+                    <tr><td colspan="4" style="height: 0.03in;"></td></tr>
+                    
+                    <!-- Third row: Official Receipt No. & Date/Other Documents (spans all columns) -->
+                    <tr>
+                        <td colspan="4" style="font-size: 0.12in;">Official Receipt No. & Date/Other Documents: <input type="text" placeholder="e.g. OR-______, MM/DD/YYYY" style="width: 60%; margin-left: 0.02in;"></td>
+                    </tr>
+                    
+                    <!-- JEV No. and Date row (positioned at bottom right) -->
+                    <tr>
+                        <td colspan="3" style="border: none; padding-top: 0.08in;"></td>
+                        <td style="text-align: right; font-size: 0.12in; font-weight: 500; vertical-align: bottom; white-space: nowrap;">
+                            JEV No. <input type="text" placeholder="" style="width: 1.0in; margin-left: 0.05in;">
+                        </td>
                     </tr>
                     <tr>
-                        <td style="width: 32%; font-size: 0.12in;">Check/ADA No.: <input type="text" placeholder="e.g. MDS-____" style="width: 60%;"></td>
-                        <td style="width: 22%; font-size: 0.12in;">Date: <input type="text" placeholder="MM/DD/YYYY" style="width: 60%;"></td>
-                        <td style="width: 26%; font-size: 0.12in;">Bank: <input type="text" placeholder="Bank name" style="width: 60%;"></td>
-                        <td rowspan="3" style="vertical-align: top;"><div class="jev-grid"></div></td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 0.12in;">Signature: <input type="text" placeholder="" style="width: 60%;"></td>
-                        <td style="font-size: 0.12in;">Date: <input type="text" placeholder="" style="width: 60%;"></td>
-                        <td style="font-size: 0.12in;">Printed Name: <input type="text" placeholder="" style="width: 60%;"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" style="font-size: 0.12in;">OR No. & Date / Other docs: <input type="text" placeholder="e.g. OR-______, MM/DD/YYYY" style="width: 60%;"></td>
-                    </tr>
-                    <!-- separate Date below JEV No. -->
-                    <tr>
-                        <td colspan="3" style="border: none; padding-top: 0.06in;"></td>
-                        <td style="text-align: right; font-size: 0.12in; font-weight: 500; vertical-align: middle;">
-                            Date: <input type="text" placeholder="MM/DD/YYYY" style="width: 1.0in;">
+                        <td colspan="3" style="border: none;"></td>
+                        <td style="text-align: right; font-size: 0.12in; font-weight: 500; vertical-align: bottom; white-space: nowrap;">
+                            Date: <input type="text" placeholder="MM/DD/YYYY" style="width: 1.0in; margin-left: 0.05in;">
                         </td>
                     </tr>
                 </table>
             </div>
         </div>
 
-        <!-- print button (hidden in print) -->
+        <!-- print button -->
         <div style="display: flex; justify-content: flex-end; margin-top: auto;">
             <button class="print-btn" onclick="window.print()">🖨️ PRINT VOUCHER</button>
         </div>
