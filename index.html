@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disbursement Voucher – Official Layout</title>
+    <title>Disbursement Voucher – Full Page (8.5x11) Print Ready | Green Theme</title>
     <style>
         * {
             box-sizing: border-box;
@@ -12,334 +12,490 @@
         }
 
         body {
-            font-family: 'Times New Roman', Times, serif; /* More formal for gov forms */
-            background: #eaf3ec;
-            padding: 30px 20px;
+            font-family: 'Times New Roman', Times, serif;
+            background: #c0ddc0;   /* subtle green background for screen */
+            padding: 0;
+            margin: 0;
             display: flex;
             justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
+        /* EXACT US LETTER SIZE – MAXIMIZED */
         .form-container {
-            max-width: 1000px;
-            width: 100%;
+            width: 8.5in;
+            height: 11in;
             background: white;
-            border: 2px solid #000;
-            padding: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 2px solid #1f5f2e;
+            padding: 0.2in 0.25in 0.15in 0.25in;  /* top right bottom left */
+            box-shadow: 0 12px 28px rgba(0, 60, 0, 0.3);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            page-break-after: avoid;
+            page-break-inside: avoid;
         }
 
-        /* HEADER SECTION */
+        /* Use flex-grow to fill height */
+        .content-grow {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* All measurements in inches for precise print */
         .header-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 0;
+            border: 1px solid #1f5f2e;
+            margin-bottom: 0.1in;
         }
 
         .header-table td {
-            border: 1px solid #000;
-            padding: 8px;
-            vertical-align: top;
+            border: 1px solid #1f5f2e;
+            padding: 0.07in 0.09in;
+            vertical-align: middle;
         }
 
         .entity-name-area {
             text-align: center;
-            border-bottom: 1px solid #000;
-            padding-bottom: 10px;
+            border-bottom: 2px solid #1f5f2e;
+            padding-bottom: 0.06in;
+            margin-bottom: 0.02in;
         }
 
         .entity-name-area input {
             width: 80%;
             text-align: center;
-            font-size: 16px;
+            font-size: 0.18in;
             font-weight: bold;
             border: none;
-            border-bottom: 1px solid #333;
+            border-bottom: 2px solid #2a7a3a;
+            background: #f4faf5;
+            padding: 0.02in 0.04in;
         }
 
         .dv-title {
             text-align: center;
-            font-size: 22px;
+            font-size: 0.28in;
             font-weight: bold;
-            padding: 15px 0;
+            letter-spacing: 0.5px;
+            color: #1f5f2e;
+            text-shadow: 1px 1px 0 #c8e6c9;
+            padding: 0.05in 0 0.02in 0;
+            line-height: 1.2;
         }
 
-        /* SECTION GRID (A, B, C, D, E) */
-        .section-container {
-            width: 100%;
-            border-collapse: collapse;
-            border: 1px solid #000;
-        }
-
-        .section-row {
-            display: flex;
-            border-bottom: 1px solid #000;
-        }
-
-        .section-label {
-            width: 35px;
-            border-right: 1px solid #000;
-            padding: 5px;
-            font-weight: bold;
-            font-size: 14px;
-            background-color: #f9f9f9;
-        }
-
-        .section-content {
-            flex: 1;
-            padding: 0;
-        }
-
-        /* SUB-TABLES */
+        /* inner tables */
         table.inner-table {
             width: 100%;
             border-collapse: collapse;
+            border: 1px solid #1f5f2e;
+            margin: 0.06in 0;
         }
 
         table.inner-table td, table.inner-table th {
-            border: 1px solid #000;
-            padding: 5px;
-            font-size: 12px;
+            border: 1px solid #1f5f2e;
+            padding: 0.06in 0.07in;
+            font-size: 0.13in;
         }
 
+        table.inner-table th {
+            background-color: #e6f3e6;
+            color: #0a3b1a;
+            font-weight: 600;
+        }
+
+        /* INVISIBLE INPUT BORDERS - placeholders shown only on screen */
         input[type="text"], input[type="number"], textarea {
             width: 100%;
             border: none;
             outline: none;
-            font-size: 13px;
-            padding: 4px;
+            font-size: 0.13in;
+            padding: 0.03in 0.04in;
+            background: transparent;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        input:focus, textarea:focus {
+            background: #f0fff0;
+            outline: 1px solid #b8d9b8;
         }
 
-        /* MODE OF PAYMENT */
+        /* mode of payment row */
         .mode-payment {
             display: flex;
-            gap: 20px;
-            padding: 10px;
-            font-size: 12px;
+            gap: 0.15in;
+            padding: 0.06in 0.08in;
+            font-size: 0.13in;
             flex-wrap: wrap;
+            background: #f0f8f0;
+            border: 1px solid #2a7a3a;
+            margin: 0.06in 0;
+        }
+        .mode-payment label {
+            display: flex;
+            align-items: center;
+            gap: 0.03in;
         }
 
-        /* SECTION A SPECIAL STYLING */
+        /* section labels */
+        .section-row {
+            display: flex;
+            border: 1px solid #1f5f2e;
+            margin: 0.06in 0;
+            background-color: #ffffff;
+        }
+
+        .section-label {
+            width: 0.4in;
+            border-right: 2px solid #1f5f2e;
+            padding: 0.1in 0;
+            font-weight: bold;
+            font-size: 0.18in;
+            text-align: center;
+            background-color: #d4ecd4;
+            color: #003d0b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-content {
+            flex: 1;
+            padding: 0.05in 0.08in;
+            background: white;
+        }
+
+        /* C/D side by side */
+        .cd-wrapper {
+            display: flex;
+            border: 1px solid #1f5f2e;
+            margin: 0.06in 0;
+        }
+        .cd-box {
+            flex: 1;
+            display: flex;
+            border-right: 1px solid #1f5f2e;
+        }
+        .cd-box:last-child {
+            border-right: none;
+        }
+
+        /* signature lines */
+        .sig-line {
+            width: 70%;
+            border-bottom: 2px solid #1f5f2e;
+            margin: 0.12in auto 0.04in;
+        }
         .supervisor-cert {
             text-align: center;
-            padding: 20px 10px;
+            padding: 0.03in 0.08in 0.1in;
         }
 
-        .sig-line {
-            width: 60%;
-            border-bottom: 1px solid #000;
-            margin: 20px auto 5px;
-        }
-
-        /* SECTION E / JEV BOX */
-        .jev-box {
-            width: 20%;
-            border-left: 1px solid #000;
-            padding: 5px;
-        }
-
+        /* JEV grid */
         .jev-grid {
-            height: 50px;
-            border: 1px solid #ccc;
-            background-image: linear-gradient(#eee 1px, transparent 1px), linear-gradient(90deg, #eee 1px, transparent 1px);
-            background-size: 15px 15px;
-            margin-top: 5px;
+            height: 0.7in;
+            border: 1px solid #1f5f2e;
+            background-image: linear-gradient(#ccdfcc 1px, transparent 1px), linear-gradient(90deg, #ccdfcc 1px, transparent 1px);
+            background-size: 0.15in 0.15in;
+            background-color: #f4fff0;
+            margin-top: 0.02in;
         }
 
-        /* BUTTONS */
+        /* footnote style */
+        .position-footnote {
+            font-size: 0.1in;
+            color: #1f5f2e;
+            display: block;
+            line-height: 1.2;
+            margin-top: 0.02in;
+        }
+
+        /* textarea heights */
+        .inner-table textarea {
+            min-height: 0.7in;
+            resize: vertical;
+        }
+
+        .approval-textarea {
+            min-height: 0.6in;
+            margin: 0.04in 0 0.04in;
+        }
+
+        /* print button */
         .print-btn {
-            margin-top: 20px;
-            padding: 10px 25px;
-            background: #2e7d32;
+            margin-top: 0.08in;
+            padding: 0.08in 0.25in;
+            background: #1f5f2e;
             color: white;
             border: none;
             cursor: pointer;
             font-weight: bold;
-            border-radius: 4px;
+            font-size: 0.15in;
+            border-radius: 0.2in;
+            align-self: flex-end;
+        }
+        .print-btn:hover {
+            background: #0f401b;
         }
 
+        /* PRINT MEDIA – REMOVE ALL PLACEHOLDERS & MAXIMIZE */
         @media print {
+            body { 
+                background: white; 
+                padding: 0; 
+                margin: 0; 
+                display: block;
+            }
+            .form-container { 
+                width: 8.5in;
+                height: 11in;
+                box-shadow: none; 
+                border: 2px solid #0a3b1a; 
+                padding: 0.2in 0.2in;
+                margin: 0 auto;
+                page-break-after: avoid; 
+                page-break-inside: avoid;
+            }
             .print-btn { display: none; }
-            body { background: white; padding: 0; }
-            .form-container { box-shadow: none; border: 2px solid #000; }
+            
+            /* CRITICAL: remove placeholder text on print */
+            input::placeholder, textarea::placeholder {
+                color: transparent !important;
+                opacity: 0 !important;
+            }
+            /* for older browsers */
+            input, textarea {
+                text-indent: 0;
+            }
+            
+            input, textarea { 
+                border: none; 
+                background: white; 
+            }
+            .section-label { 
+                background-color: #e0f0e0 !important; 
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact; 
+            }
+            .mode-payment { 
+                background: #f0f8f0; 
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact; 
+            }
+            th { 
+                background-color: #e6f3e6 !important; 
+            }
+            /* ensure JEV grid prints */
+            .jev-grid {
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact;
+            }
         }
     </style>
 </head>
 <body>
 
 <div class="form-container">
-    
-    <table class="header-table">
-        <tr>
-            <td colspan="2" style="text-align: center;">
-                <div class="entity-name-area">
-                    <input type="text" placeholder="ENTITY NAME">
-                    <div style="font-size: 10px; font-weight: bold; margin-top: 2px;">Entity Name</div>
-                </div>
-                <div class="dv-title">DISBURSEMENT VOUCHER</div>
-            </td>
-            <td style="width: 250px;">
-                <div style="border-bottom: 1px solid #000; padding-bottom: 5px; margin-bottom: 5px;">
-                    <label style="font-size: 10px; font-weight: bold;">Fund Cluster :</label>
-                    <input type="text" style="width: 100px;">
-                </div>
-                <div style="border-bottom: 1px solid #000; padding-bottom: 5px; margin-bottom: 5px;">
-                    <label style="font-size: 10px; font-weight: bold;">Date :</label>
-                    <input type="text" style="width: 100px;">
-                </div>
-                <div>
-                    <label style="font-size: 10px; font-weight: bold;">DV No. :</label>
-                    <input type="text" style="width: 100px;">
-                </div>
-            </td>
-        </tr>
-    </table>
-
-    <table class="inner-table">
-        <tr>
-            <td style="width: 120px; font-weight: bold;">Mode of Payment</td>
-            <td colspan="3">
-                <div class="mode-payment">
-                    <label><input type="checkbox"> MDS Check</label>
-                    <label><input type="checkbox"> Commercial Check</label>
-                    <label><input type="checkbox"> ADA</label>
-                    <label><input type="checkbox"> Others (Please specify) <input type="text" style="width: 100px; border-bottom: 1px solid #000;"></label>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td style="font-weight: bold;">Payee</td>
-            <td style="width: 40%;"><input type="text"></td>
-            <td style="width: 20%; font-size: 10px; font-weight: bold;">TIN/Employee No.:</td>
-            <td><input type="text" style="border-bottom: 1px solid #000;"></td>
-            <td style="width: 20%; font-size: 10px; font-weight: bold;">ORS/BURS No.:</td>
-            <td><input type="text" style="border-bottom: 1px solid #000;"></td>
-        </tr>
-        <tr>
-            <td style="font-weight: bold;">Address</td>
-            <td colspan="5"><input type="text"></td>
-        </tr>
-    </table>
-
-    <table class="inner-table">
-        <thead>
+    <!-- flex column to use full height -->
+    <div class="content-grow">
+        <!-- HEADER - maximized -->
+        <table class="header-table">
             <tr>
-                <th style="width: 45%;">Particulars</th>
-                <th style="width: 15%;">Responsibility Center</th>
-                <th style="width: 20%;">MFO/PAP</th>
-                <th style="width: 20%;">Amount</th>
+                <td colspan="2" style="text-align: center;">
+                    <div class="entity-name-area">
+                        <input type="text" placeholder="[ ENTITY NAME ]">
+                    </div>
+                    <div class="dv-title">DISBURSEMENT VOUCHER</div>
+                </td>
+                <td style="width: 2.4in; background: #f0f8f0; padding: 0.06in 0.09in;">
+                    <div style="border-bottom: 1px solid #2a7a3a; padding-bottom: 0.04in; margin-bottom: 0.04in;">
+                        <span style="font-weight: 700; font-size: 0.12in;">Fund Cluster :</span>
+                        <input type="text" placeholder="e.g. GF-2025" style="width: 1.4in;">
+                    </div>
+                    <div style="border-bottom: 1px solid #2a7a3a; padding-bottom: 0.04in; margin-bottom: 0.04in;">
+                        <span style="font-weight: 700; font-size: 0.12in;">Date :</span>
+                        <input type="text" placeholder="MM/DD/YYYY" style="width: 1.4in;">
+                    </div>
+                    <div>
+                        <span style="font-weight: 700; font-size: 0.12in;">DV No. :</span>
+                        <input type="text" placeholder="DV-____" style="width: 1.4in;">
+                    </div>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            <tr style="height: 150px;">
-                <td><textarea style="height: 100%;"></textarea></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="number" style="text-align: right;"></td>
+        </table>
+
+        <!-- Mode of payment -->
+        <div class="mode-payment">
+            <label><input type="checkbox"> MDS Check</label>
+            <label><input type="checkbox"> Commercial Check</label>
+            <label><input type="checkbox"> ADA</label>
+            <label><input type="checkbox"> Others <span style="margin-left: 0.03in;">(specify)</span> <input type="text" placeholder="specify" style="width:1.1in;"></label>
+        </div>
+
+        <!-- Payee info table -->
+        <table class="inner-table">
+            <tr>
+                <td style="width: 0.95in; font-weight: bold; background:#eaf7ea;">Payee</td>
+                <td style="width: 2.5in;"><input type="text" placeholder="Full name / Company"></td>
+                <td style="width: 1.1in; font-weight: bold;">TIN/Employee No.:</td>
+                <td><input type="text" placeholder="___-___-___"></td>
+                <td style="width: 1.1in; font-weight: bold;">ORS/BURS No.:</td>
+                <td><input type="text" placeholder="e.g. ORS-____"></td>
             </tr>
             <tr>
-                <td colspan="3" style="text-align: right; font-weight: bold; padding-right: 10px;">Amount Due</td>
-                <td><input type="number" style="text-align: right; font-weight: bold;" placeholder="0.00"></td>
+                <td style="font-weight: bold; background:#eaf7ea;">Address</td>
+                <td colspan="5"><input type="text" placeholder="Street, City, Province"></td>
             </tr>
-        </tbody>
-    </table>
+        </table>
 
-    <div class="section-row">
-        <div class="section-label">A.</div>
-        <div class="section-content">
-            <div style="padding: 5px; font-size: 12px;">Certified: Expenses/Cash Advance necessary, lawful and incurred under my direct supervision.</div>
-            <div class="supervisor-cert">
-                <div class="sig-line"></div>
-                <div style="font-size: 10px; font-weight: bold;">Printed Name, Designation and Signature of Supervisor</div>
+        <!-- Particulars table -->
+        <table class="inner-table">
+            <thead>
+                <tr>
+                    <th style="width: 45%;">Particulars</th>
+                    <th style="width: 15%;">Responsibility Center</th>
+                    <th style="width: 20%;">MFO/PAP</th>
+                    <th style="width: 20%;">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><textarea placeholder="Describe particulars / expense details ..."></textarea></td>
+                    <td><input type="text" placeholder="e.g. RC-101"></td>
+                    <td><input type="text" placeholder="e.g. MFO-2A"></td>
+                    <td><input type="number" style="text-align: right;" placeholder="0.00"></td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="text-align: right; font-weight: bold; padding-right: 0.12in;">Amount Due</td>
+                    <td><input type="number" style="text-align: right; font-weight: bold;" placeholder="0.00"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- SECTION A -->
+        <div class="section-row">
+            <div class="section-label">A.</div>
+            <div class="section-content">
+                <div style="padding: 0.02in 0.05in; font-size: 0.13in;">✅ Certified: Expenses/Cash Advance necessary, lawful and incurred under my direct supervision.</div>
+                <div class="supervisor-cert">
+                    <div class="sig-line"></div>
+                    <div style="font-size: 0.12in;"><input type="text" placeholder="Printed name, Designation" style="width:70%; text-align:center;"></div>
+                    <div style="font-size: 0.1in;">(Signature of Supervisor / Printed Name & Designation)</div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="section-row">
-        <div class="section-label">B.</div>
-        <div class="section-content">
-            <div style="padding: 5px; font-weight: bold; font-size: 12px; border-bottom: 1px solid #000;">Accounting Entry:</div>
-            <table class="inner-table" style="border: none;">
-                <tr>
-                    <th style="width: 40%; border-top: none; border-left: none;">Account Title</th>
-                    <th style="width: 20%; border-top: none;">UACS Code</th>
-                    <th style="width: 20%; border-top: none;">Debit</th>
-                    <th style="width: 20%; border-top: none; border-right: none;">Credit</th>
-                </tr>
-                <tr style="height: 60px;">
-                    <td style="border-left: none;"><textarea></textarea></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td style="border-right: none;"><input type="text"></td>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-    <div style="display: flex; border-bottom: 1px solid #000;">
-        <div style="flex: 1; border-right: 1px solid #000; display: flex;">
-            <div class="section-label">C.</div>
+        <!-- SECTION B (accounting entry) -->
+        <div class="section-row">
+            <div class="section-label">B.</div>
             <div class="section-content">
-                <div style="padding: 5px; font-weight: bold; font-size: 12px;">Certified:</div>
-                <div style="padding: 5px; font-size: 11px;">
-                    <label><input type="checkbox"> Cash available</label><br>
-                    <label><input type="checkbox"> Subject to Authority to Debit Account (when applicable)</label><br>
-                    <label><input type="checkbox"> Supporting documents complete and amount claimed proper</label>
-                </div>
-                <table class="inner-table" style="border: none; margin-top: 10px;">
-                    <tr><td style="width: 80px; border-left: none;">Signature</td><td style="border-right: none;"><input type="text"></td></tr>
-                    <tr><td style="border-left: none;">Printed Name</td><td style="border-right: none;"><input type="text"></td></tr>
-                    <tr><td style="border-left: none;">Position</td><td style="border-right: none; font-size: 9px; text-align: center;"><input type="text" style="border-bottom: 1px solid #000;"><br>Head, Accounting Unit/Authorized Representative</td></tr>
-                    <tr><td style="border-left: none; border-bottom: none;">Date</td><td style="border-right: none; border-bottom: none;"><input type="text"></td></tr>
+                <div style="padding: 0.02in 0.05in; font-weight: bold; font-size: 0.14in; color: #1f5f2e;">Accounting Entry:</div>
+                <table class="inner-table" style="border: 1px solid #1f5f2e; margin-top: 0.04in;">
+                    <tr>
+                        <th style="width: 40%;">Account Title</th>
+                        <th style="width: 20%;">UACS Code</th>
+                        <th style="width: 20%;">Debit</th>
+                        <th style="width: 20%;">Credit</th>
+                    </tr>
+                    <tr>
+                        <td><textarea type="text" placeholder="e.g. Repairs & Maintenance"></textarea></td>
+                        <td><textarea type="text" placeholder="____-__-___"></textarea></td>
+                        <td><textarea type="text" placeholder="0.00"></textarea></td>
+                        <td><textarea type="text"></textarea></td>
+                    </tr>
                 </table>
             </div>
         </div>
-        <div style="flex: 1; display: flex;">
-            <div class="section-label">D.</div>
-            <div class="section-content">
-                <div style="padding: 5px; font-weight: bold; font-size: 12px;">Approved for Payment</div>
-                <div style="height: 60px;"></div>
-                <table class="inner-table" style="border: none;">
-                    <tr><td style="width: 80px; border-left: none;">Signature</td><td style="border-right: none;"><input type="text"></td></tr>
-                    <tr><td style="border-left: none;">Printed Name</td><td style="border-right: none;"><input type="text"></td></tr>
-                    <tr><td style="border-left: none;">Position</td><td style="border-right: none; font-size: 9px; text-align: center;"><input type="text" style="border-bottom: 1px solid #000;"><br>Agency Head/Authorized Representative</td></tr>
-                    <tr><td style="border-left: none; border-bottom: none;">Date</td><td style="border-right: none; border-bottom: none;"><input type="text"></td></tr>
+
+        <!-- SECTIONS C and D with textarea in D -->
+        <div class="cd-wrapper">
+            <!-- C -->
+            <div class="cd-box">
+                <div class="section-label">C.</div>
+                <div class="section-content" style="padding: 0.05in 0.07in;">
+                    <div style="font-weight: bold; font-size: 0.14in;">Certified:</div>
+                    <div style="font-size: 0.12in; line-height: 1.3;">
+                        <label><input type="checkbox"> Cash available</label><br>
+                        <label><input type="checkbox"> Subject to Authority to Debit Account (ADA)</label><br>
+                        <label><input type="checkbox"> Supporting docs complete & amount proper</label>
+                    </div>
+                    <table style="width:100%; margin-top: 0.06in; border-collapse: collapse;">
+                        <tr><td style="width: 0.75in; font-size:0.12in;">Signature</td><td><input type="text" placeholder=""></td></tr>
+                        <tr><td style="font-size:0.12in;">Printed Name</td><td><input type="text" placeholder=""></td></tr>
+                        <tr><td style="font-size:0.12in;">Position</td>
+                            <td>
+                                <input type="text" placeholder="" style="width: 100%;">
+                                <span class="position-footnote">Head, Accounting Unit/Authorized Representative</span>
+                            </td>
+                        </tr>
+                        <tr><td style="font-size:0.12in;">Date</td><td><input type="text" placeholder=""></td></tr>
+                    </table>
+                </div>
+            </div>
+            <!-- D with textarea -->
+            <div class="cd-box">
+                <div class="section-label">D.</div>
+                <div class="section-content" style="padding: 0.05in 0.07in;">
+                    <div style="font-weight: bold; font-size: 0.14in;">Approved for Payment</div>
+                    <!-- Blank textarea (no placeholder in print) -->
+                    <textarea class="approval-textarea" placeholder="Additional instructions / remarks (optional)"></textarea>
+                    <table style="width:100%; border-collapse: collapse; margin-top: 0.03in;">
+                        <tr><td style="width: 0.75in; font-size:0.12in;">Signature</td><td><input type="text" placeholder=""></td></tr>
+                        <tr><td style="font-size:0.12in;">Printed Name</td><td><input type="text" placeholder=""></td></tr>
+                        <tr><td style="font-size:0.12in;">Position</td>
+                            <td>
+                                <input type="text" placeholder="" style="width: 100%;">
+                                <span class="position-footnote">Agency Head/Authorized Representative</span>
+                            </td>
+                        </tr>
+                        <tr><td style="font-size:0.12in;">Date</td><td><input type="text" placeholder=""></td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION E -->
+        <div class="section-row" style="border-bottom: 1px solid #1f5f2e;">
+            <div class="section-label">E.</div>
+            <div class="section-content" style="padding: 0.05in 0.08in;">
+                <table style="width:100%; border-collapse: collapse;">
+                    <tr>
+                        <td colspan="3" style="font-weight: bold; font-size: 0.14in; color: #1f5f2e;">Receipt of Payment</td>
+                        <td style="width: 25%; font-weight: bold; font-size:0.13in; text-align: right;">JEV No.</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 32%; font-size: 0.12in;">Check/ADA No.: <input type="text" placeholder="e.g. MDS-____" style="width: 60%;"></td>
+                        <td style="width: 22%; font-size: 0.12in;">Date: <input type="text" placeholder="MM/DD/YYYY" style="width: 60%;"></td>
+                        <td style="width: 26%; font-size: 0.12in;">Bank: <input type="text" placeholder="Bank name" style="width: 60%;"></td>
+                        <td rowspan="3" style="vertical-align: top;"><div class="jev-grid"></div></td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 0.12in;">Signature: <input type="text" placeholder="" style="width: 60%;"></td>
+                        <td style="font-size: 0.12in;">Date: <input type="text" placeholder="" style="width: 60%;"></td>
+                        <td style="font-size: 0.12in;">Printed Name: <input type="text" placeholder="" style="width: 60%;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="font-size: 0.12in;">OR No. & Date / Other docs: <input type="text" placeholder="e.g. OR-______, MM/DD/YYYY" style="width: 60%;"></td>
+                    </tr>
+                    <!-- separate Date below JEV No. -->
+                    <tr>
+                        <td colspan="3" style="border: none; padding-top: 0.06in;"></td>
+                        <td style="text-align: right; font-size: 0.12in; font-weight: 500; vertical-align: middle;">
+                            Date: <input type="text" placeholder="MM/DD/YYYY" style="width: 1.0in;">
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>
-    </div>
 
-    <div class="section-row" style="border-bottom: none;">
-        <div class="section-label">E.</div>
-        <div class="section-content">
-            <table class="inner-table" style="border: none;">
-                <tr>
-                    <td colspan="3" style="font-weight: bold; border-left: none; border-top: none;">Receipt of Payment</td>
-                    <td class="jev-header" style="width: 25%; border-top: none; border-right: none;">JEV No.</td>
-                </tr>
-                <tr>
-                    <td style="border-left: none; font-size: 10px;">Check/ADA No.: <input type="text" style="width: 60%; border-bottom: 1px solid #000;"></td>
-                    <td style="font-size: 10px;">Date: <input type="text" style="width: 60%; border-bottom: 1px solid #000;"></td>
-                    <td style="font-size: 10px;">Bank Name: <input type="text" style="width: 60%; border-bottom: 1px solid #000;"></td>
-                    <td rowspan="2" style="border-right: none;"><div class="jev-grid"></div></td>
-                </tr>
-                <tr>
-                    <td style="border-left: none; font-size: 10px;">Signature: <input type="text" style="width: 60%; border-bottom: 1px solid #000;"></td>
-                    <td style="font-size: 10px;">Date: <input type="text" style="width: 60%; border-bottom: 1px solid #000;"></td>
-                    <td style="font-size: 10px;">Printed Name: <input type="text" style="width: 60%; border-bottom: 1px solid #000;"></td>
-                </tr>
-                <tr>
-                    <td colspan="3" style="border-left: none; border-bottom: none; font-size: 10px;">Official Receipt No. & Date/Other Documents: <input type="text" style="width: 50%; border-bottom: 1px solid #000;"></td>
-                    <td style="border-right: none; border-bottom: none; font-size: 10px;">Date: <input type="text" style="width: 70%; border: 1px solid #ccc;"></td>
-                </tr>
-            </table>
+        <!-- print button (hidden in print) -->
+        <div style="display: flex; justify-content: flex-end; margin-top: auto;">
+            <button class="print-btn" onclick="window.print()">🖨️ PRINT VOUCHER</button>
         </div>
-    </div>
-
-    <div style="text-align: right;">
-        <button class="print-btn" onclick="window.print()">🖨️ PRINT VOUCHER</button>
-    </div>
-
-</div>
+    </div> <!-- end content-grow -->
+</div> <!-- end form-container -->
 
 </body>
 </html>
