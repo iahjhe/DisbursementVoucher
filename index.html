@@ -246,6 +246,36 @@
 
 .print-btn { background: #2e7d32; color: white; }
 .pdf-btn { background: #1565c0; color: white; }
+
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border: 1px solid black; 
+    background-color: white;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    margin-right: 5px;
+}
+
+
+input[type="checkbox"]:checked {
+    background-color: black;
+}
+
+
+input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 10px;
+    top: -1px;
+    left: 2px;
+}
     </style>
 </head>
 <body>
@@ -258,7 +288,7 @@
             <tr>
                 <td colspan="3" style="border-bottom: 1px solid black; vertical-align: middle;">
                     <div class="entity-name"><input type="text" placeholder="Entity Name" style="text-align: center;"></div>
-                    <div class="header-title">DISBURSEMENT VOUCHER</div>
+                    <div class="header-title" style="vertical-align: middle; text-align: center;">DISBURSEMENT VOUCHER</div>
                 </td>
                 <td style="width: 25%; padding: 0;">
                     <table style="border: none;">
@@ -364,14 +394,14 @@
                         </tr>
                         <tr>
                             <td style="border: 1px solid black; font-size: 10px; vertical-align: middle;">Printed Name</td>
-                            <td style="border: 1px solid black;"><input type="text" class="validate-text"></td>
+                            <td style="border: 1px solid black; vertical-align: middle;"><input type="text" class="validate-text"></td>
                         </tr>
                         <tr>
                             <td style="border: 1px solid black; font-size: 10px;" rowspan="2">Position</td>
-                            <td style="border: 1px solid black;"><input type="text" class="validate-text"></td>
+                            <td style="border: 1px solid black; vertical-align: middle;"><input type="text" class="validate-text"></td>
                         </tr>
                         <tr>
-                            <td style="border: 1px solid black; font-size: 9px; background-color: #f9f9f9;">Head, Accounting Unit/Authorized Representative</td>
+                            <td style="border: 1px solid black; font-size: 9px; background-color: #f9f9f9; text-align: center; vertical-align: middle;">Head, Accounting Unit/Authorized Representative</td>
                         </tr>
                         <tr>
                             <td style="border: 1px solid black; font-size: 10px;">Date</td>
@@ -390,14 +420,16 @@
                         </tr>
                         <tr>
                             <td style="border: 1px solid black; font-size: 10px; vertical-align: middle;">Printed Name</td>
-                            <td style="border: 1px solid black;"><input type="text" class="validate-text"></td>
+                            <td style="border: 1px solid black; vertical-align: middle;"><input type="text" class="validate-text"></td>
                         </tr>
                         <tr>
                             <td style="border: 1px solid black; font-size: 10px;" rowspan="2">Position</td>
-                            <td style="border: 1px solid black;"><input type="text" class="validate-text"></td>
+                            <td style="border: 1px solid black; vertical-align: middle;"><input type="text" class="validate-text"></td>
                         </tr>
                         <tr>
-                            <td style="border: 1px solid black; font-size: 9px; background-color: #f9f9f9;">Agency Head/Authorized Representative</td>
+                            <td style="border: 1px solid black; font-size: 9px; background-color: #f9f9f9; text-align: center; vertical-align: middle;">
+    Agency Head/Authorized Representative
+</td>
                         </tr>
                         <tr>
                             <td style="border: 1px solid black; font-size: 10px;">Date</td>
@@ -417,7 +449,7 @@
                         <tr style="border: none;">
                             <td style="border: none; width: 33%;">Check No.: <input type="text" style="border-bottom: 1px solid #ccc; width: 50%;" class="validate-text"></td>
                             <td style="border: none; width: 33%;">Date: <input type="text" style="border-bottom: 1px solid #ccc; width: 60%;" class="validate-date" placeholder=""></td>
-                            <td style="border: none; width: 33%;">Bank: <input type="text" style="border-bottom: 1px solid #ccc; width: 60%;" class="validate-text"></td>
+                            <td style="border: none; width: 33%;">Bank/Acc. No: <input type="text" style="border-bottom: 1px solid #ccc; width: 90%;" class="validate-text"></td>
                         </tr>
                         <tr style="border: none;">
                             <td style="border: none;">Sig: <input type="text" style="border-bottom: 1px solid #ccc; width: 60%;" class="validate-text"></td>
@@ -434,7 +466,7 @@
                             
                             <div class="row">
                                 <label>JEV No.</label>
-                                <input type="text" class="full-input validate-text">
+                                <input type="text" class="full-input validate-text" style="width: 70%;">
                             </div>
 
                             <hr>
@@ -451,35 +483,6 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.11.0/html2pdf.bundle.min.js"></script>
 <script>
-    function saveAsPDF() {
-    const element = document.querySelector(".voucher-container");
-
-    // Backup original styles
-    const origBodyPadding = document.body.style.padding;
-    const origBodyDisplay = document.body.style.display;
-    const origBodyAlign = document.body.style.alignItems;
-
-    // Override styles for PDF
-    document.body.style.display = "block";
-    document.body.style.padding = "0";
-    document.body.style.alignItems = "flex-start";
-
-    element.style.minHeight = "auto"; // remove forced height
-    element.style.margin = "0";
-
-    html2pdf().set({
-        margin: 0.1, // inch
-        filename: 'Disbursement_Voucher.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-    }).from(element).save().finally(() => {
-        // Restore original styles
-        document.body.style.padding = origBodyPadding;
-        document.body.style.display = origBodyDisplay;
-        document.body.style.alignItems = origBodyAlign;
-    });
-}
 document.addEventListener("DOMContentLoaded", function () {
 
     const amountTextarea = document.querySelector("tbody tr:first-child .validate-amount");
@@ -487,64 +490,62 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Format number with commas and 2 decimals
     function formatNumber(value) {
-        return Number(value).toLocaleString('en-PH', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        return Number(value).toLocaleString('en-PH', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
     }
 
-    // Calculate total
-function calculateTotal() {
-    let total = 0;
-    const lines = amountTextarea.value.split("\n");
+    // Safe math evaluator (only + - * / and numbers allowed)
+    function evaluateExpression(expr) {
+        // Remove commas
+        expr = expr.replace(/,/g, "");
 
-    lines.forEach(line => {
+        // Allow only numbers and math operators
+        if (!/^[0-9+\-*/().\s]+$/.test(expr)) {
+            return NaN;
+        }
+
         try {
-            if (line.trim() !== "") {
-                // Replace % with /100
-                const expression = line.replace(/%/g, "/100");
+            return Function('"use strict"; return (' + expr + ')')();
+        } catch {
+            return NaN;
+        }
+    }
 
-                const result = Function('"use strict"; return (' + expression + ')')();
+    function calculateTotal() {
+        let total = 0;
+        const lines = amountTextarea.value.split("\n");
 
+        lines.forEach(line => {
+            const trimmed = line.trim();
+            if (trimmed !== "") {
+                const result = evaluateExpression(trimmed);
                 if (!isNaN(result)) {
                     total += result;
                 }
             }
-        } catch (e) {
-            // Ignore invalid expressions
-        }
-    });
+        });
 
-    totalField.value = formatNumber(total);
-}
-
-    // Update total while typing (no formatting, just numbers allowed)
-amountTextarea.addEventListener("input", function () {
-    const lines = this.value.split("\n");
-
-    for (let i = 0; i < lines.length; i++) {
-        // Allow digits, decimal, and math operators
-        lines[i] = lines[i].replace(/[^\d.+\-*/%()]/g, '');
-
-        // Prevent multiple decimals in same number (basic control)
-        const parts = lines[i].split('.');
-        if (parts.length > 2) {
-            lines[i] = parts[0] + '.' + parts.slice(1).join('');
-        }
+        totalField.value = formatNumber(total);
     }
 
-    this.value = lines.join("\n");
-    calculateTotal();
-});
-
-    // Format each line on blur
+    // Format and compute when user leaves textarea
     amountTextarea.addEventListener("blur", function () {
         const lines = this.value.split("\n");
+
         for (let i = 0; i < lines.length; i++) {
-            let num = parseFloat(lines[i].trim());
-            if (!isNaN(num)) {
-                lines[i] = formatNumber(num);
-            } else {
-                lines[i] = ""; // remove invalid entries
+            const trimmed = lines[i].trim();
+            if (trimmed !== "") {
+                const result = evaluateExpression(trimmed);
+                if (!isNaN(result)) {
+                    lines[i] = formatNumber(result);
+                } else {
+                    lines[i] = "";
+                }
             }
         }
+
         this.value = lines.join("\n");
         calculateTotal();
     });
