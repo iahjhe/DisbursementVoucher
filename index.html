@@ -7,7 +7,7 @@
     <style>
         @page {
             size: portrait;
-            margin: 0.1in;
+            margin: 0.3in;
         }
 
         * {
@@ -28,11 +28,13 @@
             width: 100%;
 	        max-width:8.5in;
             background: white;
-            padding: 0.15in 0.15in 0.1in 0.15in;
+            padding: 0.15in 0.15in 0.15in 0.15in;
             display: flex;
             flex-direction: column;
-	        overflow: hidden;
 	        box-sizing: border-box;
+            height: 13.2in;
+            max-height: 13.2in;
+            overflow: hidden;
 	       
         }
 
@@ -80,9 +82,14 @@
        
         .particulars-input {
             font-size: 16px !important; 
-            font-weight: 500;
-            height: 100%;
-            min-height: 400px; 
+            font-family: "Times New Roman", Times, serif !important;
+            font-weight: 400;
+            height: 320px; 
+            max-height: 320px;
+            overflow: hidden;
+            resize: none;
+            border: none;
+            outline: none;
         }
         
         .amount-due-row td {
@@ -179,53 +186,58 @@
                 border-bottom: 1px solid black;
                 outline: none;
             }
-            @media print {
+@media print {
 
-            html, body {
-                height: 100%;
-                margin: 0;
-            }
+    @page {
+        size: 8.5in 14in;   /* LEGAL SIZE */
+        margin: 0.4in;
+    }
 
-            body {
-                background: white;
-            }
+    html, body {
+        width: 8.5in;
+        height: 14in;
+        margin: 0;
+        padding: 0;
+        background: white;
+    }
 
-            body * {
-                visibility: hidden;
-            }
+    body * {
+        visibility: hidden;
+    }
 
-            .voucher-container, .voucher-container * {
-                visibility: visible;
-            }
+    .voucher-container, 
+    .voucher-container * {
+        visibility: visible;
+    }
 
-            .voucher-container {
-                position: absolute;
-                top: 0;
-                left: 0;
+    .voucher-container {
+        position: absolute;
+        top: 0;
+        left: 0;
 
-                width: 100%;
-                max-width: 100%;
+        width: 100%;
+        height: 13.2in; /* Slightly smaller than 14in to prevent cut */
+        max-height: 13.2in;
 
-                height: 100%;
-                min-height: 100%;
+        overflow: hidden; /* Prevent page overflow */
+        page-break-inside: avoid;
+    }
 
-                display: flex;
-                flex-direction: column;
+    textarea {
+        resize: none;
+        overflow: hidden; /* Prevent expanding */
+    }
 
-                page-break-inside: avoid;
-                break-inside: avoid;
-            }
+    table {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
 
-            table {
-                page-break-inside: avoid;
-                break-inside: avoid;
-            }
+    .floating-buttons {
+        display: none;
+    }
+}
 
-            @page {
-                size: auto;
-                margin: 0.3in;
-            }
-            }
 .floating-buttons {
     position: fixed;
     bottom: 20px;
@@ -461,18 +473,18 @@ input[type="checkbox"]:checked::after {
                         OR No. & Date: <input type="text" style="width: 70%; border-bottom: 1px solid black;" class="validate-date-range" placeholder="">
                     </div>
                 </td>
-                    <td style="width: 15%; vertical-align: bottom;" class="center">
+                    <td style="width: 20%; vertical-align: middle;">
                         <div class="je-container">
                             
-                            <div class="row">
+                            <div class="row" style="border-bottom: 1px solid black;">
                                 <label>JEV No.</label>
-                                <input type="text" class="full-input validate-text" style="width: 70%;">
+                                <input type="text" class="full-input validate-text" style="width: 70%; ">
                             </div>
 
-                            <hr>
+                            <hr style="border: white;">
 
                             <div class="row">
-                                <label>Date</label>
+                                <label>Date:</label>
                                 <input type="text" class="full-input validate-date" placeholder="">
                             </div>
 
