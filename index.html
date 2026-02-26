@@ -491,24 +491,48 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Calculate total
-    function calculateTotal() {
-        let total = 0;
-        const lines = amountTextarea.value.split("\n");
-        lines.forEach(line => {
-            let num = parseFloat(line.replace(/,/g,'').trim());
-            if (!isNaN(num)) {
-                total += num;
+function calculateTotal() {
+    let total = 0;
+    const lines = amountTextarea.value.split("\n");
+
+    lines.forEach(line => {
+        try {
+            if (line.trim() !== "") {
+                // Replace % with /100
+                const expression = line.replace(/%/g, "/100");
+
+                const result = Function('"use strict"; return (' + expression + ')')();
+
+                if (!isNaN(result)) {
+                    total += result;
+                }
             }
-        });
-        totalField.value = formatNumber(total);
-    }
+        } catch (e) {
+            // Ignore invalid expressions
+        }
+    });
+
+    totalField.value = formatNumber(total);
+}
 
     // Update total while typing (no formatting, just numbers allowed)
-    amountTextarea.addEventListener("input", function () {
-        // Allow only numbers, decimal, and newlines
-        this.value = this.value.replace(/[^\d.\n]/g, '');
-        calculateTotal();
-    });
+amountTextarea.addEventListener("input", function () {
+    const lines = this.value.split("\n");
+
+    for (let i = 0; i < lines.length; i++) {
+        // Allow digits, decimal, and math operators
+        lines[i] = lines[i].replace(/[^\d.+\-*/%()]/g, '');
+
+        // Prevent multiple decimals in same number (basic control)
+        const parts = lines[i].split('.');
+        if (parts.length > 2) {
+            lines[i] = parts[0] + '.' + parts.slice(1).join('');
+        }
+    }
+
+    this.value = lines.join("\n");
+    calculateTotal();
+});
 
     // Format each line on blur
     amountTextarea.addEventListener("blur", function () {
