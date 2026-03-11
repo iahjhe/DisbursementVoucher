@@ -53,7 +53,7 @@
             text-align: center;
             font-size: 19px;
             font-weight: bold;
-            padding: 2px; /* reduced from 5px */
+            padding: 2px; 
         }
 
         .entity-name {
@@ -83,7 +83,7 @@
             font-size: 15px !important;
             width: 100%;
             height: 100%;
-            min-height: 320px;  /* reduced from 320px */
+            min-height: 320px;  
             border: none;
             outline: none;
             resize: none;
@@ -91,12 +91,11 @@
         }
         
         .amount-due-row td {
-            height: 22px; /* slightly reduced */
+            height: 22px; 
             vertical-align: middle;
             padding: 1px 5px;
         }
 
-   /* Mode of Payment Checkboxes */
         .checkbox-group {
             display: flex;
             gap: 15px;
@@ -111,11 +110,9 @@
             vertical-align: middle;
         }
 
-        /* Accounting Entry Table */
         .accounting-table th { font-size: 10px;}
         .accounting-table td { height: 22px; padding: 1px 4px; }
 
-        /* Bottom Signature Blocks (C & D) */
         .signature-section {
             width: 100%;
             margin-top: -1px;
@@ -164,24 +161,21 @@
     <button class="print-btn" onclick="window.print()">Print Voucher</button>
 </div>
 <div class="voucher-container">
-    <!-- HEADER: Department, Fund Cluster, DV No. etc - REDUCED HEIGHT -->
     <table>
         <tr>
             <td colspan="3" style="border-bottom: 1px solid black; vertical-align: middle; padding: 0 5px;">
                 <div class="entity-name">Department of Agriculture Regional Field Office <br> Cordillera Administrative Region</div>
-                <div class="header-title" style="display:flex; align-items:center; justify-content: center; font-size: 19px; font-weight: bolder; height: 35px;">DISBURSEMENT VOUCHER</div> <!-- height reduced from 50px -->
+                <div class="header-title" style="display:flex; align-items:center; justify-content: center; font-size: 19px; font-weight: bolder; height: 35px; margin-top: 8px;">DISBURSEMENT VOUCHER</div> <!-- height reduced from 50px -->
             </td>
             <td style="width: 16.67%; padding: 0;">
                 <table style="border: none; width: 100%;">
-                    <tr><td style="border: none; border-bottom: 1px solid black; padding: 1px 2px;"><b>Fund Cluster:</b> <input type="text" class="validate-text"></td></tr> 
-                    <tr><td style="border: none; padding: 1px 2px;"><b>Date:</b> <input type="text" class="validate-date" placeholder=""></td></tr>
-                    <tr><td style="border: none; padding: 1px 2px;"><b>DV No.:</b> <input type="text" class="validate-text"></td></tr>
+                    <tr><td style="border: none; border-bottom: 1px solid black; padding: 1px 2px;"><b>Fund Cluster:</b> <input type="text" class="validate-text" style="text-align: end;"></td></tr> 
+                    <tr><td style="border: none; padding: 1px 2px;"><b>Date:</b> <input type="text" class="validate-date" style="text-align: end;"></td></tr>
+                    <tr><td style="border: none; padding: 1px 2px;"><b>DV No.:</b> <input type="text" class="validate-text" style="text-align: end;"></td></tr>
                 </table>
             </td>
         </tr>
     </table>
-
-    <!-- MODE OF PAYMENT - slightly condensed -->
     <table style="border-top:none;">
         <tr>
             <td style="width:100px; font-weight:bold; border-right:1px solid black; padding: 2px 4px;">Mode of Payment</td>
@@ -207,8 +201,6 @@
             </td>
         </tr>
     </table>
-
-    <!-- PAYEE & ADDRESS - slightly condensed -->
     <table style="border-top:none;">
         <tr>
             <td style="width:100px; font-weight:bold; border-right:1px solid black; vertical-align: middle; padding: 2px;">Payee</td>
@@ -217,12 +209,10 @@
             <td style="width:17.5%; padding: 1px;"><div class="bold font-medium">ORS/BURS No.</div><input type="text" class="validate-text"></td>
         </tr>
         <tr>
-            <td style="font-weight:bold; border-right:1px solid black; vertical-align: middle; padding: 2px;"><div style="color:white; padding: 8px;" ></div>Address</td>
-            <td colspan="3" style="padding: 1px;"><input type="text" style="font-size: 15px; padding: 4px;" class="validate-text"></td>
+            <td style="font-weight:bold; border-right:1px solid black; vertical-align: middle; padding: 2px; margin-top: 5px;"><div style="color:white; padding: 8px;" ></div>Address</td>
+            <td colspan="3" style="padding: 1px; vertical-align: bottom;"><input type="text" style="font-size: 15px; padding: 4px;" class="validate-text"></td>
         </tr>
     </table>
-
-    <!-- PARTICULARS TABLE with AMOUNT column - reduced height -->
     <table style="border-top: none; flex-grow: 1;">
         <thead>
             <tr class="center">
@@ -239,7 +229,7 @@
                 </td>
                 <td style="height: 320px; padding: 0;"><textarea class="particulars-input validate-text"></textarea></td>
                 <td style="height: 320px; padding: 0;"><textarea class="particulars-input validate-text"></textarea></td>
-                <td style="height: 320px; padding: 0;"><textarea class="particulars-input validate-amount amount-input" style="text-align: right; font-weight: bold;" placeholder=""></textarea></td>
+                <td style="height: 320px; padding: 0;"><textarea class="particulars-input validate-amount amount-input" style="text-align: right; font-weight: bold; padding-top: 5px;" placeholder=""></textarea></td>
             </tr>
             <tr class="amount-due-row">
                 <td colspan="3" class="bold" style="text-align: right; padding-right: 20px; font-size: 11px;">Amount Due</td>
@@ -247,12 +237,11 @@
             </tr>
         </tbody>
     </table>
-
    <table style="margin-top: -1px;">
         <tr>
-            <td style="padding: 10px;">
+            <td style="padding: 5px;">
                 <div class="bold" style="font-size: 12px;">A. Certified: Expenses/Cash Advance necessary, lawful and incurred under my direct supervision.</div>
-                    <div style="margin: 20px auto 0px auto; width: 60%; border-bottom: 1px solid black; text-align: center;">
+                    <div style="margin: 18px auto 0px auto; width: 60%; border-bottom: 1px solid black; text-align: center;">
                         <input type="text" style="text-align: center; font-weight: bold; width: 80%; display: block; margin: 0 auto; border-bottom: none; font-size: 15px;">
                         <input type="text" style="text-align: center; font-weight: 400; width: 80%; display: block; margin: 0 auto; font-size: 12px;">
                     </div>
@@ -260,7 +249,6 @@
             </td>
         </tr>
     </table>
-
     <table style="margin-top: -1px;">
         <tr>
             <td style="padding: 0;">
@@ -281,17 +269,16 @@
             </td>
         </tr>
     </table>
-
     <table class="signature-section">
         <tr>
             <td style="width: 50%; padding: 0;">
                 <div style="display: flex;">
                 <div class="bold" style="padding: 2px 5px; font-size: 12px;">C. Certified:</div>
-<div style="padding: 5px; font-size: 10px; min-height: 59px;">
-    <label style="display: block; margin-bottom: 4px;"><input type="checkbox"> Cash available</label>
-    <label style="display: block; margin-bottom: 4px;"><input type="checkbox"> Subject to Authority to Debit Account (when applicable)</label>
-    <label style="display: block; margin-bottom: 0;"><input type="checkbox"> Supporting documents complete and amount claimed proper</label>
-</div>
+                    <div style="padding: 5px; font-size: 10px; min-height: 59px;">
+                        <label style="display: block; margin-bottom: 4px;"><input type="checkbox"> Cash available</label>
+                        <label style="display: block; margin-bottom: 4px;"><input type="checkbox"> Subject to Authority to Debit Account (when applicable)</label>
+                        <label style="display: block; margin-bottom: 0;"><input type="checkbox"> Supporting documents complete and amount claimed proper</label>
+                    </div>
                 </div>
                 <table style="border: none; border-top: 1px solid black;">
                     <tr><td class="label-cell" style="border-left: none;">Signature</td><td style="border-right: none; height: 35px;"><input type="text"></td></tr>
@@ -326,7 +313,6 @@
             </td>
         </tr>
     </table>
-
     <table style="margin-top: -1px;">
         <tr>
             <td style="width: 75%; padding: 0;">
@@ -356,15 +342,13 @@
                     <div style="border-top: 1px solid black; margin:2px 0;"></div>
                     <div style="padding: 1px 0 0 0;">
                         <div style="font-size: 9px; font-weight: bold;">Date</div>
-                        <input type="text" style="width:100%; border:none; padding: 1px;">
+                        <input type="text" style="width:100%; border:none; padding: 1px; height: 40px">
                     </div>
                 </div>
             </td>
         </tr>
     </table>
 </div>
-
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const amountTextarea = document.querySelector("tbody tr:first-child .validate-amount");
